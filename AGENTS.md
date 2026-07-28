@@ -67,3 +67,12 @@ Report only:
 4. Remaining risks or limitations.
 5. Commit hash, if committed.
 6. Explicit statement: `Task stopped; no next task started.`
+
+## Task state recording
+
+- The active task file is the source of truth for task-specific progress.
+- Before the final approved commit, update its `Completion record`.
+- Keep the completion record concise and factual.
+- If work stops before completion, add or update `Work-in-progress handoff`.
+- Do not record hidden reasoning, exploratory narration, or lengthy session logs.
+- Do not update `CHANGELOG.md` unless the active task explicitly requires it.
