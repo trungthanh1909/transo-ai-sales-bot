@@ -27,18 +27,28 @@ Planning and repository bootstrap. The first MVP is an employee-assist workflow:
 ## Essential commands
 
 ```powershell
-# Backend build and tests
-cd backend
-.\mvnw.cmd clean verify
-
-# Start local infrastructure
-cd ..
+# Create local-only configuration, then start PostgreSQL.
+Copy-Item .env.example .env
 docker compose -f infra/docker-compose.yml up -d
 
-# Inspect repository state
-git status
-git diff
-git diff --staged
+# Build and test the backend.
+Set-Location backend
+.\mvnw.cmd clean verify
+Set-Location ..
+
+# Run the application against the local database.
+$env:DB_HOST = "localhost"
+$env:DB_PORT = "5432"
+$env:POSTGRES_DB = "transo_sales_bot"
+$env:POSTGRES_USER = "transo_local"
+$env:POSTGRES_PASSWORD = "change-me-local-only"
+Set-Location backend
+.\mvnw.cmd spring-boot:run
+
+# In another PowerShell session, verify health.
+Invoke-RestMethod http://localhost:8080/health
 ```
+
+The backend targets Java 21. Docker Compose reads `.env` automatically; keep that file local and never commit it.
 
 Do not place secrets in this repository. Use `.env.example` only for variable names and safe sample values.

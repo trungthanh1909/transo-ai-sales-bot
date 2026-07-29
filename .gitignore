@@ -8,6 +8,7 @@
 # Build output
 target/
 backend/target/
+.m2/
 
 # Logs
 *.log
