@@ -1,0 +1,17 @@
+﻿# IntelliJ IDEA
+.idea/
+*.iml
+
+# Environment and secrets
+.env
+
+# Build output
+target/
+backend/target/
+
+# Logs
+*.log
+
+# Operating system
+.DS_Store
+Thumbs.db
