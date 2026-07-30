@@ -49,14 +49,14 @@ Create a reproducible local foundation so future tasks can add business features
 
 ## Acceptance criteria
 
-- [ ] `java -version` compatible code targets Java 21.
-- [ ] `backend/mvnw.cmd clean verify` passes on Windows when prerequisites are available.
-- [ ] PostgreSQL starts through Docker Compose.
-- [ ] The application can connect to PostgreSQL using environment-based configuration.
-- [ ] Flyway applies the baseline migration on an empty database.
-- [ ] Health endpoint returns success when the application is running.
-- [ ] No real secret is committed.
-- [ ] No unrelated feature is implemented.
+- [x] `java -version` compatible code targets Java 21.
+- [x] `backend/mvnw.cmd clean verify` passes on Windows when prerequisites are available.
+- [x] PostgreSQL starts through Docker Compose.
+- [x] The application can connect to PostgreSQL using environment-based configuration.
+- [x] Flyway applies the baseline migration on an empty database.
+- [x] Health endpoint returns success when the application is running.
+- [x] No real secret is committed.
+- [x] No unrelated feature is implemented.
 
 ## Expected files/modules
 
@@ -120,7 +120,7 @@ Codex may commit only after explicit user approval.
 - Tests: `backend\\.\\mvnw.cmd clean verify` passed with the application-context and health endpoint tests. Docker Compose reported PostgreSQL healthy. The application started with documented environment variables, Flyway recorded `V1__baseline.sql` as successful, and `GET /health` returned `{"status":"UP"}`.
 - Commit: Not created; user approval is required.
 - Known limitations: No Testcontainers integration test was added; the local Compose startup verifies the migration against PostgreSQL.
-- Follow-up task IDs: None.
+- Follow-up task IDs: Candidate `TASK-0002 — Persist fake Messenger webhook events`; the bounded task file has not been created yet.
 
 ## Work-in-progress handoff
 
