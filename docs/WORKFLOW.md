@@ -69,7 +69,7 @@ Example:
 ```powershell
 git switch main
 git pull --ff-only
-git switch -c feat/TASK-0001-bootstrap-backend
+git switch -c <type>/TASK-XXXX-short-name
 git status
 ```
 
@@ -237,6 +237,32 @@ git log -1 --oneline
 git status
 ```
 
+Publishing the completed task is a separate action.
+
+If the user explicitly authorizes publishing:
+
+```powershell
+git push
+```
+
+or, for a new remote branch:
+
+```powershell
+git push -u origin <type>/TASK-XXXX-short-name
+```
+
+A Draft Pull Request may then be created.
+
+The Pull Request should contain:
+
+- task ID and title;
+- concise implementation summary;
+- verification results;
+- commit hash;
+- known limitations.
+
+Creating or updating a Draft Pull Request does **not** authorize merging.
+
 Set `status: DONE` as part of the approved commit when practical. If the task record cannot include the final commit hash without a second commit, leave the hash in Git history and the final report instead of automatically amending the commit.
 
 ## 13. Step 10 — Merge separately
@@ -248,13 +274,22 @@ Example:
 ```powershell
 git switch main
 git pull --ff-only
-git merge --ff-only feat/TASK-0001-bootstrap-backend
+git merge --ff-only <type>/TASK-XXXX-short-name
 git status
+```
+
+When Pull Requests are used, the user may merge through the GitHub interface instead of running a local merge command.
+
+After the remote merge:
+
+```powershell
+git switch main
+git pull --ff-only
 ```
 
 Delete the branch only after confirming the merge and remote state.
 
-Do not let Codex merge or push unless the user explicitly requests it.
+Do not let Codex push, create or update a Pull Request, mark a Pull Request ready for review, or merge unless the user explicitly requests that action.
 
 ## 14. When a task is blocked
 

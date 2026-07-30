@@ -3,7 +3,7 @@ id: TASK-XXXX
 title: Short task title
 status: READY
 priority: P1
-branch: feat/TASK-XXXX-short-name
+branch: <type>/TASK-XXXX-short-name
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
 owner: developer
@@ -18,6 +18,13 @@ documentation:
   adr_required: false
   changelog_required: false
 ---
+
+Branch type examples:
+
+- `feat` for a new product capability;
+- `fix` for a defect correction;
+- `chore` for repository, tooling, or foundation work;
+- `docs` for documentation-only work.
 
 # TASK-XXXX — Short task title
 

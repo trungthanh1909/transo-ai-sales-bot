@@ -8,6 +8,7 @@
 # Build output
 target/
 backend/target/
+.m2/
 
 # Logs
 *.log
@@ -15,3 +16,6 @@ backend/target/
 # Operating system
 .DS_Store
 Thumbs.db
+
+# Local Codex configuration
+.codex/
