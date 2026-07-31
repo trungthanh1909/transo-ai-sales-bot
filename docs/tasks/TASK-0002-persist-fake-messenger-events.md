@@ -1,11 +1,12 @@
 ---
 id: TASK-0002
 title: Persist fake Messenger webhook events
-status: READY
+status: DONE
 priority: P1
 branch: feat/TASK-0002-persist-fake-messenger-events
 created: 2026-07-30
-updated: 2026-07-30
+updated: 2026-07-31
+completed: 2026-07-31
 owner: developer
 codex:
   implementation_model: gpt-5.6-terra
@@ -355,11 +356,11 @@ Not applicable.
 
 ## 14. Completion record
 
-- Result: Not completed yet.
-- Principal files or modules changed: Not completed yet.
-- Tests and verification results: Not run yet.
+- Result: Implemented a local/test-only fake Messenger webhook endpoint that validates a bounded event, persists the submitted JSON value as PostgreSQL `jsonb`, and acknowledges duplicate external event IDs without overwriting the original record.
+- Principal files or modules changed: `webhook` API, application, and PostgreSQL persistence modules; `V2__create_inbound_webhook_event.sql`; webhook controller/application/persistence tests; baseline application-context test.
+- Tests and verification results: `mvn clean verify` passed with 16 tests, 0 failures, and 0 errors. PostgreSQL runtime verification confirmed Flyway V2 success; first valid delivery returned 201 and stored one row; changed duplicate delivery returned 200 and preserved the original payload, `received_at`, and status; missing `message.text` and malformed JSON returned 400 with no inserted rows; the database unique constraint rejected a direct duplicate insert; six concurrent requests produced one 201, five 200 responses, zero 500 responses, and one immutable row; the production profile returned 404 for the local webhook endpoint; `/health` returned `UP`.
 - Commit: `Not committed yet`
-- Known limitations: Not determined yet.
+- Known limitations: The named local PostgreSQL volume was preserved after runtime verification and retains local verification rows. No live Meta integration is included.
 - Follow-up task IDs, without implementing them: Candidate follow-up for conversation/message mapping; assign an ID only when drafted.
 - ADR updated: `No`
 - Changelog updated: `No`
